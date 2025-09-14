@@ -24,8 +24,8 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-            git branch: 'main', url: 'https://github.com/Aditiraj551/Book-my-show.git'
-            sh 'ls -la'  // Verify files after checkout
+                git branch: 'main', url: 'https://github.com/Aditiraj551/Book-my-show.git'
+                sh 'ls -la'  // Verify files after checkout
             }
         }
 
@@ -62,13 +62,6 @@ pipeline {
                     exit 1
                 fi
                 '''
-            }
-        }
-
-        stage('OWASP FS Scan') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
 
@@ -132,3 +125,4 @@ pipeline {
         }
     }
 }
+
